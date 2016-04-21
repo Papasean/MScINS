@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <title>NetMon 2</title>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+</head>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="../dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../activebower_components/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+                                                                                                                                                         <![endif]-->
+    <style>  circle,
+    path {
+        cursor: pointer;
+    }
+
+    circle {
+        fill: none;
+        pointer-events: all;
+    }
+
+</style>
+<body onload="show();">
+<!-- Modal One -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal 1 content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"></button>
+                <h4 class="modal-title">Task One</h4>
+            </div>
+            <div  class="modal-body">
+                <p>What is the IP Address of the host with the most errors?</p>
+                <!-- <div class="checkbox">
+                    <label><input type="checkbox" value="1">192.168.0.1</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="2">192.168.0.10</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="3" >172.16.0.15</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="4" >172.16.0.29</label>
+                </div> -->
+            </div>
+            <div class="modal-footer">
+                <p>Press "Start" when you are ready to begin</p>
+                <button type="button" onclick="start();" class="btn btn-success" data-dismiss="modal"> Start </button>
+                <!--<button type="button" onclick="multiTask();"class="btn btn-danger" data-dismiss="modal">Click to Submit</button>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal Two -->
+<div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal 2 content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Task One</h4>
+            </div>
+            <div  class="modal-body">
+                <p>What is the IP Address of the host with the most errors?</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="1">192.168.0.1</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="2">192.168.0.10</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="3" >172.16.0.15</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="4" >172.16.0.29</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Press "Submit" to complete this task</p>
+                <button type="button" onclick="multiTask(); btntest_onclick()"class="btn btn-danger" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="page-header" align="left">Network Monitor</h1>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="page-header" align="right">Time:<span id="time"></span>&nbsp;<button type="button" onclick="multiTask();" class="btn btn-danger">Click to Submit</button></h1>
+            </div>
+        </div>
+    </div>
+
+<script src="../d3/d3.min.js"></script>
+<script>
+
+    var margin = {top: 350, right: 480, bottom: 350, left: 480},
+            radius = Math.min(margin.top, margin.right, margin.bottom, margin.left) - 10;
+
+    var hue = d3.scale.category10();
+
+    var luminance = d3.scale.sqrt()
+            .domain([0, 1e6])
+            .clamp(true)
+            .range([90, 20]);
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", margin.left + margin.right)
+            .attr("height", margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var partition = d3.layout.partition()
+            .sort(function(a, b) { return d3.ascending(a.name, b.name); })
+            .size([2 * Math.PI, radius]);
+
+    var arc = d3.svg.arc()
+            .startAngle(function(d) { return d.x; })
+            .endAngle(function(d) { return d.x + d.dx ; })
+            .padAngle(.01)
+            .padRadius(radius / 3)
+            .innerRadius(function(d) { return radius / 3 * d.depth; })
+            .outerRadius(function(d) { return radius / 3 * (d.depth + 1) - 1; });
+
+    d3.json("../flare.json", function(error, root) {
+
+        // Compute the initial layout on the entire tree to sum sizes.
+        // Also compute the full name and fill color for each node,
+        // and stash the children so they can be restored as we descend.
+        partition
+                .value(function(d) { return d.size; })
+                .nodes(root)
+                .forEach(function(d) {
+                    d._children = d.children;
+                    d.sum = d.value;
+                    d.key = key(d);
+                    d.fill = fill(d);
+                });
+
+        // Now redefine the value function to use the previously-computed sum.
+        partition
+                .children(function(d, depth) { return depth < 2 ? d._children : null; })
+                .value(function(d) { return d.sum; });
+
+        var center = svg.append("circle")
+                .attr("r", radius / 3)
+                .on("click", zoomOut);
+
+        center.append("title")
+                .text("zoom out");
+
+        var path = svg.selectAll("path")
+                .data(partition.nodes(root).slice(1))
+                .enter().append("path")
+                .attr("d", arc)
+                .style("fill", function(d) { return d.fill; })
+                .each(function(d) { this._current = updateArc(d); })
+                .on("click", zoomIn);
+
+        function zoomIn(p) {
+            if (p.depth > 1) p = p.parent;
+            if (!p.children) return;
+            zoom(p, p);
+        }
+
+        function zoomOut(p) {
+            if (!p.parent) return;
+            zoom(p.parent, p);
+        }
+
+        // Zoom to the specified new root.
+        function zoom(root, p) {
+            if (document.documentElement.__transition__) return;
+
+            // Rescale outside angles to match the new layout.
+            var enterArc,
+                    exitArc,
+                    outsideAngle = d3.scale.linear().domain([0, 2 * Math.PI]);
+
+            function insideArc(d) {
+                return p.key > d.key
+                        ? {depth: d.depth - 1, x: 0, dx: 0} : p.key < d.key
+                        ? {depth: d.depth - 1, x: 2 * Math.PI, dx: 0}
+                        : {depth: 0, x: 0, dx: 2 * Math.PI};
+            }
+
+            function outsideArc(d) {
+                return {depth: d.depth + 1, x: outsideAngle(d.x), dx: outsideAngle(d.x + d.dx) - outsideAngle(d.x)};
+            }
+
+            center.datum(root);
+
+            // When zooming in, arcs enter from the outside and exit to the inside.
+            // Entering outside arcs start from the old layout.
+            if (root === p) enterArc = outsideArc, exitArc = insideArc, outsideAngle.range([p.x, p.x + p.dx]);
+
+            path = path.data(partition.nodes(root).slice(1), function(d) { return d.key; });
+
+            // When zooming out, arcs enter from the inside and exit to the outside.
+            // Exiting outside arcs transition to the new layout.
+            if (root !== p) enterArc = insideArc, exitArc = outsideArc, outsideAngle.range([p.x, p.x + p.dx]);
+
+            d3.transition().duration(d3.event.altKey ? 7500 : 750).each(function() {
+                path.exit().transition()
+                        .style("fill-opacity", function(d) { return d.depth === 1 + (root === p) ? 1 : 0; })
+                        .attrTween("d", function(d) { return arcTween.call(this, exitArc(d)); })
+                        .remove();
+
+                path.enter().append("path")
+                        .style("fill-opacity", function(d) { return d.depth === 2 - (root === p) ? 1 : 0; })
+                        .style("fill", function(d) { return d.fill; })
+                        .on("click", zoomIn)
+                        .each(function(d) { this._current = enterArc(d); });
+
+                path.transition()
+                        .style("fill-opacity", 1)
+                        .attrTween("d", function(d) { return arcTween.call(this, updateArc(d)); });
+            });
+        }
+    });
+
+    function key(d) {
+        var k = [], p = d;
+        while (p.depth) k.push(p.name), p = p.parent;
+        return k.reverse().join(".");
+    }
+
+    function fill(d) {
+        var p = d;
+        while (p.depth > 1) p = p.parent;
+        var c = d3.lab(hue(p.name));
+        c.l = luminance(d.sum);
+        return c;
+    }
+
+    function arcTween(b) {
+        var i = d3.interpolate(this._current, b);
+        this._current = i(0);
+        return function(t) {
+            return arc(i(t));
+        };
+    }
+
+    function updateArc(d) {
+        return {depth: d.depth, x: d.x, dx: d.dx};
+    }
+
+    d3.select(self.frameElement).style("height", margin.top + margin.bottom + "px");
+
+</script>
+
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- Modal.js -->
+    <script src="../bower_components/bootstrap/js/modal.js"></script>
+
+    <!-- Load Modal on Startup -->
+    <script type="text/javascript">
+        $(window).load(function(){
+            $('#myModal1').modal('show');
+        });
+    </script>
+
+    <!-- Back to Main Page -->
+    <script type="text/javascript">
+        function btntest_onclick()
+        {
+            window.location.href = "../../index.html";
+        }
+    </script>
+
+    <!-- Stopwatch.js-->
+    <script src="../js/stopwatch2.js"></script>
+
+    <!-- multiTaskButton.js -->
+    <script src="../js/multiTaskButton.js"></script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <title>NetMon 2</title>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+</head>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="../dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+                                                                                                                                                         <![endif]-->
+<style type="text/css">
+    circle.node {
+        cursor: pointer;
+        stroke: #000;
+        stroke-width: .5px;
+    }
+
+    circle.node.directory {
+        stroke: #9ecae1;
+        stroke-width: 2px;
+    }
+
+    circle.node.collapsed {
+        stroke: #555;
+    }
+
+    .nodetext {
+        fill: #252929;
+        font-weight: bold;
+        text-shadow: 0 0 0.2em white;
+    }
+
+    line.link {
+        fill: none;
+        stroke: #9ecae1;
+        stroke-width: 1.5px;
+    }
+</style>
+<body onload="show();">
+<!-- Modal One -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal 1 content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"></button>
+                <h4 class="modal-title">Task One</h4>
+            </div>
+            <div  class="modal-body">
+                <p>What is the IP Address of the host with the most errors?</p>
+                <!-- <div class="checkbox">
+                    <label><input type="checkbox" value="1">192.168.0.1</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="2">192.168.0.10</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="3" >172.16.0.15</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="4" >172.16.0.29</label>
+                </div> -->
+            </div>
+            <div class="modal-footer">
+                <p>Press "Start" when you are ready to begin</p>
+                <button type="button" onclick="start();" class="btn btn-success" data-dismiss="modal"> Start </button>
+                <!--<button type="button" onclick="multiTask();"class="btn btn-danger" data-dismiss="modal">Click to Submit</button>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal Two -->
+<div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal 2 content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Task One</h4>
+            </div>
+            <div  class="modal-body">
+                <p>What is the IP Address of the host with the most errors?</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="1">192.168.0.1</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="2">192.168.0.10</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="3" >172.16.0.15</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="4" >172.16.0.29</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Press "Submit" to complete this task</p>
+                <button type="button" onclick="multiTask(); btntest_onclick()"class="btn btn-danger" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="page-header" align="left">Network Monitor</h1>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="page-header" align="right">Time:<span id="time"></span>&nbsp;<button type="button" onclick="multiTask();" class="btn btn-danger">Click to Submit</button></h1>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container">
+            <div id="visualization" align="center"></div>
+            <h2>Usage</h2>
+            <form id="jsonInput">
+                <fieldset>
+                    <textarea id="jsonData"></textarea>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary btn-large">Update</button>
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="../d3/d3.js"></script>
+    <script type="text/javascript" src="../d3/d3.geom.js"></script>
+    <script type="text/javascript" src="../d3/d3.layout.js"></script>
+    <script type="text/javascript" src="../js/CodeFlower.js"></script>
+    <script type="text/javascript" src="../js/dataConverter.js"></script>
+    <script type="text/javascript">
+        var currentCodeFlower;
+        var createCodeFlower = function(json) {
+            // update the jsonData textarea
+            document.getElementById('jsonData').value = JSON.stringify(json);
+            // remove previous flower to save memory
+            if (currentCodeFlower) currentCodeFlower.cleanup();
+            // adapt layout size to the total number of elements
+            var total = countElements(json);
+            w = parseInt(Math.sqrt(total) * 60, 10);
+            h = parseInt(Math.sqrt(total) * 60, 10);
+            // create a new CodeFlower
+            currentCodeFlower = new CodeFlower("#visualization", w, h).update(json);
+        };
+
+        d3.json('data.json', createCodeFlower);
+
+        document.getElementById('project').addEventListener('change', function() {
+            d3.json(this.value, createCodeFlower);
+        });
+        document.getElementById('jsonInput').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('visualization').scrollIntoView();
+            var json = JSON.parse(document.getElementById('jsonData').value);
+            currentCodeFlower.update(json);
+        });
+        document.getElementById('jsonConverter').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var origin = this.children[0].children[0].value;
+            var data = this.children[0].children[1].value;
+            var json = convertToJSON(data, origin);
+            document.getElementById('visualization').scrollIntoView();
+            createCodeFlower(json);
+        });
+    </script>
+
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- Modal.js -->
+    <script src="../bower_components/bootstrap/js/modal.js"></script>
+
+    <!-- Load Modal on Startup -->
+    <script type="text/javascript">
+        $(window).load(function(){
+            $('#myModal1').modal('show');
+        });
+    </script>
+
+    <!-- Back to Main Page -->
+    <script type="text/javascript">
+        function btntest_onclick()
+        {
+            window.location.href = "../../index.html";
+        }
+    </script>
+
+    <!-- Stopwatch.js-->
+    <script src="../js/stopwatch2.js"></script>
+
+    <!-- multiTaskButton.js -->
+    <script src="../js/multiTaskButton.js"></script>
+
+</div>
+</body>
+</html>
