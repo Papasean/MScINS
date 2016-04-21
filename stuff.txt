@@ -1,0 +1,25 @@
+onclick="document.getElementById('btn1').disabled = true;document.getElementById('btn2').disabled = false; document.getElementById('btn3').disabled = true;
+
+onclick="document.getElementById('btn1').disabled = true;document.getElementById('btn2').disabled = true; document.getElementById('btn3').disabled = false;
+
+onclick="document.getElementById('btn1').disabled = true;document.getElementById('btn2').disabled = true; document.getElementById('btn3').disabled = true;
+
+
+ var btn1=$('#1');
+
+        var btn2=$('#2');
+
+        var btn3=$('#3');
+
+        $('.group1').each(function(parameters)
+        {
+            var index = parameters.index;
+            console.log("hello");
+            //$(this).empty();
+            switch(reOrder[index]){
+                case "1": $(this).enable(btn1);
+                case "2": $(this).enable(btn2); break;
+                case "3": $(this).enable(btn3); break;
+            }
+            $(this).css({"visibility":"visible"})
+        });
