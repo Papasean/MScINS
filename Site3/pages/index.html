@@ -175,7 +175,7 @@
             currentCodeFlower = new CodeFlower("#visualization", w, h).update(json);
         };
 
-        d3.json('data.json', createCodeFlower);
+        d3.json('https://mscins.azurewebsites.net/Site3/pages/data.json', createCodeFlower);
 
         document.getElementById('project').addEventListener('change', function() {
             d3.json(this.value, createCodeFlower);
