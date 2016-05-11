@@ -141,10 +141,9 @@
     <div class="content">
         <div class="container">
             <div id="visualization" align="center"></div>
-            <h2>Usage</h2>
-            <form id="jsonInput">
+            <form id="jsonInput" hidden="enabled">
                 <fieldset>
-                    <textarea id="jsonData"></textarea>
+                    <textarea id="jsonData" ></textarea>
                     <div class="pull-right">
                         <button type="submit" class="btn btn-primary btn-large">Update</button>
                     </div>
@@ -175,7 +174,7 @@
             currentCodeFlower = new CodeFlower("#visualization", w, h).update(json);
         };
 
-        d3.json('https://mscins.azurewebsites.net/Site3/pages/data.json', createCodeFlower);
+        d3.json('data.json', createCodeFlower);
 
         document.getElementById('project').addEventListener('change', function() {
             d3.json(this.value, createCodeFlower);
