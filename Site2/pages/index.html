@@ -42,7 +42,7 @@
     }
 
 </style>
-<body onload="show();">
+<body id="test2" onload="show();">
 <!-- Modal One -->
 <div id="myModal1" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -89,17 +89,17 @@
             </div>
             <div  class="modal-body">
                 <p>What is the IP Address of the host with the most errors?</p>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="1">192.168.0.1</label>
+                <div class="radio">
+                    <label><input type="radio" value="1" name="optradio">192.168.0.1</label>
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="2">192.168.0.10</label>
+                <div class="radio">
+                    <label><input type="radio" value="2" name="optradio">192.168.0.10</label>
                 </div>
-                <div class="checkbox disabled">
-                    <label><input type="checkbox" value="3" >172.16.0.15</label>
+                <div class="radio">
+                    <label><input type="radio" value="3" name="optradio">172.16.0.15</label>
                 </div>
-                <div class="checkbox disabled">
-                    <label><input type="checkbox" value="4" >172.16.0.29</label>
+                <div class="radio">
+                    <label><input type="radio" value="4" name="optradio">172.16.0.29</label>
                 </div>
             </div>
             <div class="modal-footer">

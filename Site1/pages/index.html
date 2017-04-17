@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
-    <title>NetMon 1</title>
+    <title id="title">NetMon 1</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,9 +36,35 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../bower_components/raphael/raphael-min.js"></script>
+    <script src="../bower_components/morrisjs/morris.min.js"></script>
+    <script src="../js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!-- Modal.js -->
+    <script src="../bower_components/bootstrap/js/modal.js"></script>
+    <!-- Firebase Script-->
+    <script src="https://www.gstatic.com/firebasejs/3.7.8/firebase.js"></script>
+
+    <!-- Cookies Scripts -->
+    <script src="../../js/js.cookie.js"></script>
+    <script src="../../js/cookie.js"></script>
+    <!--<script src="../../js/firebase.js"></script>-->
 </head>
-<body onload="show();">
+<body id="test1" onload="show();">
 <div id="myModal1" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -72,22 +98,23 @@
             </div>
             <div  class="modal-body">
                 <p>What is the IP Address of the host with the most errors?</p>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="1">192.168.0.1</label>
+                <div class="radio">
+                    <label><input type="radio" value="1" name="optradio">192.168.0.1</label>
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="2">192.168.0.10</label>
+                <div class="radio">
+                    <label><input type="radio" value="2" name="optradio">192.168.0.10</label>
                 </div>
-                <div class="checkbox disabled">
-                    <label><input type="checkbox" value="3" >172.16.0.15</label>
+                <div class="radio">
+                    <label><input type="radio" value="3" name="optradio">172.16.0.15</label>
                 </div>
-                <div class="checkbox disabled">
-                    <label><input type="checkbox" value="4" >172.16.0.29</label>
+                <div class="radio">
+                    <label><input type="radio" value="4" name="optradio">172.16.0.29</label>
                 </div>
             </div>
             <div class="modal-footer">
                 <p>Press "Submit" to complete this task</p>
-                <button type="button" onclick="multiTask(); btntest_onclick()"class="btn btn-danger" data-dismiss="modal">Submit</button>
+                <button type="button" onclick="multiTask(); btntest_onclick();"class="btn btn-danger" data-dismiss="modal">Submit</button>
+
             </div>
         </div>
     </div>
@@ -419,26 +446,7 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <!-- Modal.js -->
-    <script src="../bower_components/bootstrap/js/modal.js"></script>
 
     <!-- Load Modal on Startup -->
     <script type="text/javascript">
@@ -447,11 +455,47 @@
     });
     </script>
 
-    <!-- Back to Main Page -->
     <script type="text/javascript">
-    function btntest_onclick()
-    {
-    window.location.href = "../../index.html";
+       // createSession();
+    </script>
+
+    <script type="text/javascript">
+
+    function btntest_onclick() {
+
+        var userId = JSON.parse(Cookies.get('UserID'));
+        var testNumber = document.getElementById('title').innerHTML;
+        var radioValue = document.querySelector('input[name="optradio"]:checked').value;
+        var finTime = document.getElementById("time").innerHTML;
+
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAu-8hww6VXWXNXSDKxZxYLBP4NEpjOJ30",
+        authDomain: "mscins-9ab2e.firebaseapp.com",
+        databaseURL: "https://mscins-9ab2e.firebaseio.com",
+        projectId: "mscins-9ab2e",
+        storageBucket: "mscins-9ab2e.appspot.com",
+        messagingSenderId: "354357573870"
+    };
+    firebase.initializeApp(config);
+
+    var fbdatabase = firebase.database().ref('users');
+
+    fbdatabase.child('ID').set(userId);
+    fbdatabase.child('test').set(testNumber);
+    fbdatabase.child('Answer').set(radioValue);
+    fbdatabase.child('Time').set(finTime);
+
+   // writeUserData();
+
+
+        window.alert(userId);
+        window.alert(testNumber);
+        window.alert(radioValue);
+        window.alert(finTime);
+        window.location.href = "../../index.html";
+
     }
     </script>
 

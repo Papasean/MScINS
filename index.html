@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>MSc INS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
@@ -10,6 +10,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/js.cookie.js"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/randomContent.js"></script>
+    <script src="js/sessionID.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.6/firebase-database.js"></script>
+
 
     <style type="text/css">
         .group1{
@@ -17,44 +22,6 @@
         }
 
     </style>
-
-    <script type="text/javascript">
-
-        /***********************************************
-         * Random Content Order script- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
-         * Please keep this notice intact
-         * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
-         ***********************************************/
-
-        function randomizeContent(classname){
-            var contents=randomizeContent.collectElementbyClass(classname);
-            contents.text.sort(function() {return 0.5 - Math.random();});
-            var tbodyref=contents.ref[0].tagName=="TR"? contents.ref[0].parentNode : new Object();
-            for (var i=0; i<contents.ref.length; i++){
-                if (tbodyref.moveRow) //if IE
-                    tbodyref.moveRow(0, Math.round(Math.random()*(tbodyref.rows.length-1)));
-                else
-                    contents.ref[i].innerHTML=contents.text[i];
-                contents.ref[i].style.visibility="visible"
-            }
-        }
-
-        randomizeContent.collectElementbyClass=function(classname){ //return two arrays containing elements with specified classname, plus their innerHTML content
-            var classnameRE=new RegExp("(^|\\s+)"+classname+"($|\\s+)", "i"); //regular expression to screen for classname within element
-            var contentobj=new Object();
-            contentobj.ref=new Array(); //array containing references to the participating contents
-            contentobj.text=new Array();//array containing participating contents' contents (innerHTML property)
-            var alltags=document.all? document.all : document.getElementsByTagName("*");
-            for (var i=0; i<alltags.length; i++){
-                if (typeof alltags[i].className=="string" && alltags[i].className.search(classnameRE)!=-1){
-                    contentobj.ref[contentobj.ref.length]=alltags[i];
-                    contentobj.text[contentobj.text.length]=alltags[i].innerHTML
-                }
-            }
-            return contentobj
-        }
-    </script>
-
 
 
 </head>
@@ -80,7 +47,7 @@
             <div class="group1">
                 <div id="2">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...lewgligliuiihbliuiubliugiupiugigig</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris... This is the one with the codeFlower.</p>
                 <a href="Site2/index.html" type="button" class="btn btn-lg btn-success">Enter</a>
                 </div>
             </div>
@@ -98,53 +65,10 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script>
+   cookieMonster();
 
-    if (Cookies.get("testCookie") == null) {
-    //Do stuff if cookie doesn't exist like set a cookie with a value of 1
-
-        //randomize order of contents with DIV class="group1"
-        randomizeContent("group1");
-
-        // create array for Order of Exercises
-        var exOrder = $('.group1').map(function() {
-            console.log(this.childNodes[1].id);
-            return this.childNodes[1].id;
-        });
-        exOrder = exOrder.splice(0,3);
-
-        console.log(exOrder);
-
-        // set cookie with div order
-        Cookies.set('testCookie', JSON.stringify(exOrder));
-
-    }
-
-    else {
-
-        var reOrder = JSON.parse(Cookies.get('testCookie'));
-        console.log(reOrder);
-        var div1=$('#1');
-
-        var div2=$('#2');
-
-        var div3=$('#3');
-
-        $('.group1').each(function(parameters)
-        {
-            var index = parameters.index;
-           // console.log("hello");
-            //$(this).empty();
-            switch(reOrder[index]){
-                case "1": $(this).append(div1); break;
-                case "2": $(this).append(div2); break;
-                case "3": $(this).append(div3); break;
-            }
-            $(this).css({"visibility":"visible"})
-        });
-        }
-
+   createSession();
 </script>
-
 </body>
 </html>

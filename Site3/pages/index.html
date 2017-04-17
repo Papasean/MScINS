@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-    <title>NetMon 2</title>
+    <title>NetMon 3</title>
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 </head>
 
@@ -59,7 +59,7 @@
         stroke-width: 1.5px;
     }
 </style>
-<body onload="show();">
+<body id="test3" onload="show();">
 <!-- Modal One -->
 <div id="myModal1" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -106,17 +106,17 @@
             </div>
             <div  class="modal-body">
                 <p>What is the IP Address of the host with the most errors?</p>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="1">192.168.0.1</label>
+                <div class="radio">
+                    <label><input type="radio" value="1" name="optradio">192.168.0.1</label>
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="2">192.168.0.10</label>
+                <div class="radio">
+                    <label><input type="radio" value="2" name="optradio">192.168.0.10</label>
                 </div>
-                <div class="checkbox disabled">
-                    <label><input type="checkbox" value="3" >172.16.0.15</label>
+                <div class="radio">
+                    <label><input type="radio" value="3" name="optradio">172.16.0.15</label>
                 </div>
-                <div class="checkbox disabled">
-                    <label><input type="checkbox" value="4" >172.16.0.29</label>
+                <div class="radio">
+                    <label><input type="radio" value="4" name="optradio">172.16.0.29</label>
                 </div>
             </div>
             <div class="modal-footer">
@@ -220,6 +220,7 @@
     <script type="text/javascript">
         function btntest_onclick()
         {
+            //window.alert(session_id);
             window.location.href = "../../index.html";
         }
     </script>
