@@ -62,7 +62,6 @@
     <!-- Cookies Scripts -->
     <script src="../../js/js.cookie.js"></script>
     <script src="../../js/cookie.js"></script>
-    <!--<script src="../../js/firebase.js"></script>-->
 </head>
 <body id="test1" onload="show();">
 <div id="myModal1" class="modal fade" role="dialog">
@@ -455,19 +454,14 @@
     });
     </script>
 
-    <script type="text/javascript">
-       // createSession();
-    </script>
-
+<!-- Store Data and Back to Main Page -->
     <script type="text/javascript">
 
     function btntest_onclick() {
 
         var userId = JSON.parse(Cookies.get('UserID'));
-        var testNumber = document.getElementById('title').innerHTML;
         var radioValue = document.querySelector('input[name="optradio"]:checked').value;
         var finTime = document.getElementById("time").innerHTML;
-
 
     // Initialize Firebase
     var config = {
@@ -480,29 +474,23 @@
     };
     firebase.initializeApp(config);
 
-    console.log(firebase);
+    var database = firebase.database();
+        var results = database.ref('netmon1');
+        var data = {
+            Username: userId,
+            Answer: radioValue,
+            Time: finTime
+        };
 
-    //var post = {text: userId, test: testNumber};
-    var fbRef = firebase.database().ref();
-    fbRef.child('Test').set('Value One');
-    //var messagesRef = fbdatabase.child('messages');
-    //var messageRef = messagesRef.push(post);
-
-
-    //fbdatabase.child('ID').set(userId);
-    //fbdatabase.child('test').set(testNumber);
-    //fbdatabase.child('Answer').set(radioValue);
-    //fbdatabase.child('Time').set(finTime);
-
-   // writeUserData();
-
-
-        window.alert(userId);
-        window.alert(testNumber);
-        window.alert(radioValue);
-        window.alert(finTime);
-        window.location.href = "../../index.html";
-
+        results.push(data, finished);
+        function finished(error) {
+            if (error) {
+                console.log('ooops');
+            } else {
+                console.log('data saved!');
+                window.location.href = "../../index.html";
+            }
+        }
     }
     </script>
 
