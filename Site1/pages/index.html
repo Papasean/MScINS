@@ -480,12 +480,19 @@
     };
     firebase.initializeApp(config);
 
-    var fbdatabase = firebase.database().ref('users');
+    console.log(firebase);
 
-    fbdatabase.child('ID').set(userId);
-    fbdatabase.child('test').set(testNumber);
-    fbdatabase.child('Answer').set(radioValue);
-    fbdatabase.child('Time').set(finTime);
+    //var post = {text: userId, test: testNumber};
+    var fbRef = firebase.database().ref();
+    fbRef.child('Test').set('Value One');
+    //var messagesRef = fbdatabase.child('messages');
+    //var messageRef = messagesRef.push(post);
+
+
+    //fbdatabase.child('ID').set(userId);
+    //fbdatabase.child('test').set(testNumber);
+    //fbdatabase.child('Answer').set(radioValue);
+    //fbdatabase.child('Time').set(finTime);
 
    // writeUserData();
 
