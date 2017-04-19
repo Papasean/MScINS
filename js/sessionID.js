@@ -12,6 +12,6 @@ function createSession()
     }
 
     else {
-        //console.log(session_id);
+        console.log(session_id);
     }
 }
