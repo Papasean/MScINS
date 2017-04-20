@@ -7,6 +7,7 @@
     <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/sean.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/js.cookie.js"></script>
@@ -15,11 +16,10 @@
     <script src="js/sessionID.js"></script>
 
 
-    <style type="text/css">
+   <style type="text/css">
         .group1{
             visibility: hidden;
         }
-
     </style>
 
 
@@ -27,8 +27,8 @@
     <body>
         <div class="container">
             <div class="jumbotron">
-                <h1>Visualising Security Threats</h1>
-                <p>The following 3 test scenarios are designed to test a users ability to identify network traffic issues, and  compare the "traditional" dashboard approach with two alternative methods.</p>
+                <h1>Visualising Network Traffic Issues</h1>
+                <p>The following 3 test scenarios are designed to test and record the time taken for a user to identify network traffic issues, and compares the "traditional" dashboard approach with two alternative methods.</p>
             </div>
             <div id="moduleWrap" class="row">
                 <div class="col-sm-4">
@@ -63,11 +63,57 @@
                 </div>
             </div>
         </div>
-
         <script>
-           cookieMonster();
+            if (Cookies.get("testCookie") == null) {
+                //Do stuff if cookie doesn't exist like set a cookie with a value of 1
+                //randomize order of contents with DIV class="group1"
+                randomizeContent("group1");
+                // create array for Order of Exercises
+                var exOrder = $('.group1').map(function () {
+                    console.log(this.childNodes[1].id);
+                    return this.childNodes[1].id;
+                });
+                exOrder = exOrder.splice(0, 3);
 
-           createSession();
+                console.log(exOrder);
+
+                // set cookie with div order
+                Cookies.set('testCookie', JSON.stringify(exOrder));
+
+            }
+
+            else {
+
+                var reOrder = JSON.parse(Cookies.get('testCookie'));
+                console.log(reOrder);
+                var div1 = $('#1');
+
+                var div2 = $('#2');
+
+                var div3 = $('#3');
+
+                $('.group1').each(function (parameters) {
+                    var index = parameters.index;
+                    // console.log("hello");
+                    //$(this).empty();
+                    switch (reOrder[index]) {
+                        case "1":
+                            $(this).append(div1);
+                            break;
+                        case "2":
+                            $(this).append(div2);
+                            break;
+                        case "3":
+                            $(this).append(div3);
+                            break;
+                    }
+                    $(this).css({"visibility": "visible"})
+                });
+
+            }
+        </script>
+        <script>
+            createSession();
         </script>
 
 </body>
