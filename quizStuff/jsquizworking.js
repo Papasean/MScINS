@@ -30,7 +30,7 @@
     var questions = questionbank[Math.floor(Math.random() * questionbank.length)];
     console.log(questions)
 
-    var questionCounter = 0; //Tracks question number
+    //var questionCounter = 0; //Tracks question number
     var selections = []; //Array containing user choices
     var quiz = $('#quiz'); //Quiz div object
 
@@ -48,10 +48,10 @@
         choose();
 
         // If no user selection, progress is stopped
-        if (isNaN(selections[questionCounter])) {
+        if (isNaN(selections)) {
             alert('Please make a selection!');
         } else {
-            questionCounter++;
+            //questionCounter++;
             displayNext();
         }
     });
@@ -64,7 +64,7 @@
             return false;
         }
         choose();
-        questionCounter--;
+        //questionCounter--;
         displayNext();
     });
 
@@ -75,7 +75,7 @@
         if(quiz.is(':animated')) {
             return false;
         }
-        questionCounter = 0;
+        //questionCounter = 0;
         selections = [];
         displayNext();
         $('#start').hide();
@@ -91,18 +91,18 @@
 
     // Creates and returns the div that contains the questions and
     // the answer selections
-    function createQuestionElement(index) {
+    function createQuestionElement() {
         var qElement = $('<div>', {
             id: 'question'
         });
 
-        var header = $('<h2>Question ' + (index + 1) + ':</h2>');
-        qElement.append(header);
+        //var header = $('<h2>Question ' + (index + 1) + ':</h2>');
+       //qElement.append(header);
 
-        var question = $('<p>').append(questions[index].question);
+        var question = $('<p>').append(questions.question);
         qElement.append(question);
 
-        var radioButtons = createRadios(index);
+        var radioButtons = createRadios();
         qElement.append(radioButtons);
 
         return qElement;
@@ -113,10 +113,10 @@
         var radioList = $('<ul>');
         var item;
         var input = '';
-        for (var i = 0; i < questions[index].choices.length; i++) {
+        for (var i = 0; i < questions.choices.length; i++) {
             item = $('<li>');
             input = '<input type="radio" name="answer" value=' + i + ' />';
-            input += questions[index].choices[i];
+            input += questions.choices[i];
             item.append(input);
             radioList.append(item);
         }
@@ -125,7 +125,7 @@
 
     // Reads the user selection and pushes the value to an array
     function choose() {
-        selections[questionCounter] = +$('input[name="answer"]:checked').val();
+        selections = +$('input[name="answer"]:checked').val();
     }
 
     // Displays next requested element
@@ -133,29 +133,22 @@
         quiz.fadeOut(function() {
             $('#question').remove();
 
-            if(questionCounter < questions.length){
-                var nextQuestion = createQuestionElement(questionCounter);
+
+                var nextQuestion = createQuestionElement();
                 quiz.append(nextQuestion).fadeIn();
-                if (!(isNaN(selections[questionCounter]))) {
-                    $('input[value='+selections[questionCounter]+']').prop('checked', true);
+                if (!(isNaN(selections))) {
+                    $('input[value='+selections+']').prop('checked', true);
                 }
 
                 // Controls display of 'prev' button
-                if(questionCounter === 1){
-                    $('#prev').show();
-                } else if(questionCounter === 0){
-
-                    $('#prev').hide();
-                    $('#next').show();
-                }
-            }else {
-                var scoreElem = displayScore();
-                quiz.append(scoreElem).fadeIn();
-                $('#next').hide();
-                $('#prev').hide();
+                else{
                 $('#start').show();
-            }
+                   // $('#prev').hide();
+                   // $('#next').show();
+                }
+
         });
+
     }
 
     // Computes score and returns a paragraph element to be displayed

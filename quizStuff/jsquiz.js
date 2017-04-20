@@ -5,6 +5,8 @@
 /** Developed from http://codepen.io/gcarino/pen/LDgtn */
 
 (function() {
+
+    //Sets up the question bank
     var questionbank = [{
         question: "What is 2*5?",
         choices: [2, 5, 10, 15, 20],
@@ -27,10 +29,10 @@
         correctAnswer: 4
     }];
 
+    //Chooses a random question
     var questions = questionbank[Math.floor(Math.random() * questionbank.length)];
     console.log(questions)
 
-    //var questionCounter = 0; //Tracks question number
     var selections = []; //Array containing user choices
     var quiz = $('#quiz'); //Quiz div object
 
@@ -52,7 +54,9 @@
             alert('Please make a selection!');
         } else {
             //questionCounter++;
-            displayNext();
+            //displayNext();
+            //displayScore();
+            window.location.href = "thanks.html";
         }
     });
 
@@ -151,19 +155,4 @@
 
     }
 
-    // Computes score and returns a paragraph element to be displayed
-    function displayScore() {
-        var score = $('<p>',{id: 'question'});
-
-        var numCorrect = 0;
-        for (var i = 0; i < selections.length; i++) {
-            if (selections[i] === questions[i].correctAnswer) {
-                numCorrect++;
-            }
-        }
-
-        score.append('You got ' + numCorrect + ' questions out of ' +
-            questions.length + ' right!!!');
-        return score;
-    }
 })();
