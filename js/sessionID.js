@@ -8,10 +8,11 @@ function createSession()
         var session_id = Date.now();
 
         Cookies.set('UserID', JSON.stringify(session_id));
-        console.log(session_id);
+        //console.log(session_id);
     }
 
     else {
+        var session_id = JSON.parse(Cookies.get('UserID'))
         console.log(session_id);
     }
 }
