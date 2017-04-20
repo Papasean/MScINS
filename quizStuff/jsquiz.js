@@ -37,10 +37,10 @@
     var quiz = $('#quiz'); //Quiz div object
 
     // Display initial question
-    displayNext();
+    askQuestion();
 
-    // Click handler for the 'next' button
-    $('#next').on('click', function (e) {
+    // Click handler for the 'submit' button
+    $('#submit').on('click', function (e) {
         e.preventDefault();
 
         // Suspend click listener during fade animation
@@ -53,44 +53,9 @@
         if (isNaN(selections)) {
             alert('Please make a selection!');
         } else {
-            //questionCounter++;
-            //displayNext();
-            //displayScore();
+
             window.location.href = "thanks.html";
         }
-    });
-
-    // Click handler for the 'prev' button
-    $('#prev').on('click', function (e) {
-        e.preventDefault();
-
-        if(quiz.is(':animated')) {
-            return false;
-        }
-        choose();
-        //questionCounter--;
-        displayNext();
-    });
-
-    // Click handler for the 'Start Over' button
-    $('#start').on('click', function (e) {
-        e.preventDefault();
-
-        if(quiz.is(':animated')) {
-            return false;
-        }
-        //questionCounter = 0;
-        selections = [];
-        displayNext();
-        $('#start').hide();
-    });
-
-    // Animates buttons on hover
-    $('.button').on('mouseenter', function () {
-        $(this).addClass('active');
-    });
-    $('.button').on('mouseleave', function () {
-        $(this).removeClass('active');
     });
 
     // Creates and returns the div that contains the questions and
@@ -113,7 +78,7 @@
     }
 
     // Creates a list of the answer choices as radio inputs
-    function createRadios(index) {
+    function createRadios() {
         var radioList = $('<ul>');
         var item;
         var input = '';
@@ -132,23 +97,21 @@
         selections = +$('input[name="answer"]:checked').val();
     }
 
-    // Displays next requested element
-    function displayNext() {
+    // Displays submit requested element
+    function askQuestion() {
         quiz.fadeOut(function() {
             $('#question').remove();
 
 
-                var nextQuestion = createQuestionElement();
-                quiz.append(nextQuestion).fadeIn();
+                var submitQuestion = createQuestionElement();
+                quiz.append(submitQuestion).fadeIn();
                 if (!(isNaN(selections))) {
                     $('input[value='+selections+']').prop('checked', true);
                 }
 
                 // Controls display of 'prev' button
                 else{
-                $('#start').show();
-                   // $('#prev').hide();
-                   // $('#next').show();
+
                 }
 
         });
