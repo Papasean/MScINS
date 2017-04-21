@@ -45,6 +45,9 @@
     <!-- multiTaskButton.js -->
     <script src="../../js/multiTaskButton.js"></script>
 
+    <!-- Posting to Firebase and Navigating pages -->
+    <script src="../../js/firebase.js"></script>
+
 
 <style type="text/css">
     circle.node {
@@ -136,7 +139,7 @@
             </div>
             <div class="modal-footer">
                 <p>Press "Submit" to complete this task</p>
-                <button type="button" onclick="multiTask(); btntest_onclick()"class="btn btn-danger" data-dismiss="modal">Submit</button>
+                <button type="button" onclick="multiTask(); send2Firebase() "class="btn btn-danger" data-dismiss="modal">Submit</button>
             </div>
         </div>
     </div>
@@ -229,53 +232,6 @@
         $(window).load(function(){
             $('#myModal1').modal('show');
         });
-    </script>
-
-    <!-- Store Data and Back to Main Page -->
-    <script type="text/javascript">
-        function btntest_onclick()
-        {
-
-            var userId = JSON.parse(Cookies.get('UserID'));
-            var radioValue = document.querySelector('input[name="optradio"]:checked').value;
-            var finTime = document.getElementById("time").innerHTML;
-
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyAu-8hww6VXWXNXSDKxZxYLBP4NEpjOJ30",
-                authDomain: "mscins-9ab2e.firebaseapp.com",
-                databaseURL: "https://mscins-9ab2e.firebaseio.com",
-                projectId: "mscins-9ab2e",
-                storageBucket: "mscins-9ab2e.appspot.com",
-                messagingSenderId: "354357573870"
-            };
-            firebase.initializeApp(config);
-
-            var database = firebase.database();
-            var results = database.ref('results/netmon3');
-            var data = {
-                Username: userId,
-                Answer: radioValue,
-                Time: finTime
-            };
-
-            results.push(data, finished);
-            function finished(error) {
-                if (error) {
-                    console.log('ooops');
-                } else {
-                    console.log('data saved!');
-                    //window.location.href = "../../thanks.html";
-                    if (sessionStorage.getItem('userVisit') < 3) {
-                        window.location.href = "../../index.html";
-                    }
-                    else{
-                        window.location.href = "../../thanks.html";
-                    }
-                }
-            }
-
-        }
     </script>
 </div>
 </body>

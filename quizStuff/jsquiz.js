@@ -32,6 +32,7 @@
     //Chooses a random question
     var questions = questionbank[Math.floor(Math.random() * questionbank.length)];
     console.log(questions);
+    console.log(questions.correctAnswer)
 
     var selections = []; //Array containing user choices
     var quiz = $('#quiz'); //Quiz div object
@@ -84,7 +85,7 @@
         var input = '';
         for (var i = 0; i < questions.choices.length; i++) {
             item = $('<li>');
-            input = '<input type="radio" name="answer" value=' + i + ' />';
+            input = '<input type="radio" class="radio" name="answer" value=' + i + ' />';
             input += questions.choices[i];
             item.append(input);
             radioList.append(item);
