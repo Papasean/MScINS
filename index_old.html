@@ -12,7 +12,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/js.cookie.js"></script>
     <script src="js/cookie.js"></script>
-    <!-- <script src="js/randomContent.js"></script> -->
+    <script src="js/randomContent.js"></script>
     <script src="js/sessionID.js"></script>
     <script src="js/questionOrder.js"></script>
 
@@ -33,56 +33,88 @@
             </div>
             <div id="moduleWrap" class="row">
                 <div class="col-sm-4">
-                    <!--<h3>Exercise 1</h3>
+                    <h3>Exercise 1</h3>
                     <div class="group1">
                         <div id="1">
                         <p>The following exercise will use a "typical" industry dashboard layout for displaying enterprise data.</p>
                         <p>When you are ready enter the site using the button below and follow the onscreen instructions</p>
-                        <form>
-                            <input type="button" onclick="window.location.href='Site1/index.html'" id="myBtn1" value="Enter" class="btn btn-lg btn-success" disabled>
-                        </form>
-                        </div>
-                    </div> -->
-                    <h3>Exercise 1</h3>
-                    <div>
-                        <div>
-                            <p>The following exercise will use a "typical" industry dashboard layout for displaying enterprise data.</p>
-                            <p>When you are ready enter the site using the button below and follow the onscreen instructions</p>
-                            <form>
-                                <input type="button" onclick="window.location.href='Site1/index.html'" id="myBtn1" value="Enter" class="btn btn-lg btn-success" disabled>
-                            </form>
+                        <a href="Site1/index.html" type="button" id="myBtn1" class="btn btn-lg btn-success">Enter</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <h3>Exercise 2</h3>
-                    <div>
-                        <div>
+                    <div class="group1">
+                        <div id="2">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...lewgligliuiihbliuiubliugiupiugigig</p>
                         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris... This is the one with the codeFlower.</p>
-                            <form>
-                                <input type="button" onclick="window.location.href='Site2/index.html'" id="myBtn2" value="Enter" class="btn btn-lg btn-success" disabled>
-                            </form>
+                        <a href="Site2/index.html" type="button" id="myBtn2" class="btn btn-lg btn-success">Enter</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <h3>Exercise 3</h3>
-                    <div>
-                        <div>
+                    <div class="group1">
+                        <div id="3" >
                         <p>Lorem ipsum dolor sit amet, consectetur adipisi..the quick brown fox jumped over the lazy dog.</p>
                         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco and what ever whatever What EVA!</p>
-                            <form>
-                                <input type="button" onclick="window.location.href='Site3/index.html'" id="myBtn3" value="Enter" class="btn btn-lg btn-success" disabled>
-                            </form>
+                        <a href="Site3/index.html" type="button" id="myBtn3" class="btn btn-lg btn-success">Enter</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <script>
+            if (Cookies.get("testCookie") == null) {
+                //Do stuff if cookie doesn't exist like set a cookie with a value of 1
+                //randomize order of contents with DIV class="group1"
+                randomizeContent("group1");
+                // create array for Order of Exercises
+                var exOrder = $('.group1').map(function () {
+                    console.log(this.childNodes[1].id);
+                    return this.childNodes[1].id;
+                });
+                exOrder = exOrder.splice(0, 3);
+
+                console.log(exOrder);
+
+                // set cookie with div order
+                Cookies.set('testCookie', JSON.stringify(exOrder));
+
+            }
+
+            else {
+
+                var reOrder = JSON.parse(Cookies.get('testCookie'));
+                console.log(reOrder);
+                var div1 = $('#1');
+
+                var div2 = $('#2');
+
+                var div3 = $('#3');
+
+                $('.group1').each(function (parameters) {
+                    var index = parameters.index;
+                    // console.log("hello");
+                    //$(this).empty();
+                    switch (reOrder[index]) {
+                        case "1":
+                            $(this).append(div1);
+                            break;
+                        case "2":
+                            $(this).append(div2);
+                            break;
+                        case "3":
+                            $(this).append(div3);
+                            break;
+                    }
+                    $(this).css({"visibility": "visible"})
+                });
+
+            }
+        </script>
+        <script>
             createSession();
-            enableButtons();
         </script>
 
 </body>

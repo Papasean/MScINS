@@ -265,7 +265,13 @@
                     console.log('ooops');
                 } else {
                     console.log('data saved!');
-                    window.location.href = "../../index.html";
+                    //window.location.href = "../../thanks.html";
+                    if (sessionStorage.getItem('userVisit') < 3) {
+                        window.location.href = "../../index.html";
+                    }
+                    else{
+                        window.location.href = "../../thanks.html";
+                    }
                 }
             }
 

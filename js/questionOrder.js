@@ -12,12 +12,12 @@ if (questionsOrder === 0)
     var questionOrderArray = [123, 132, 213, 231, 312, 321];
     questionsOrder = questionOrderArray[Math.floor(Math.random() * questionOrderArray.length)];
 }
-else
+/**else
 {
     console.log("Boom");
 }
-
-function myFunction() {
+*/
+function enableButtons() {
     //var questionsOrder = 312;
     console.log(questionsOrder);
     sessionStorage.setItem('questOrder', questionsOrder);
@@ -43,7 +43,8 @@ function myFunction() {
                 document.getElementById("myBtn3").disabled = false;
             }
             else {
-                window.location.href = "../quizStuff/thanks.html";
+                atTheEnd();
+                //window.location.href = "../quizStuff/thanks.html";
             }
             break;
         case 132:
@@ -64,7 +65,8 @@ function myFunction() {
                 document.getElementById("myBtn2").disabled = false;
             }
             else {
-                window.location.href = "../quizStuff/thanks.html";
+                atTheEnd();
+                //window.location.href = "../quizStuff/thanks.html";
             }
             break;
         case 213:
@@ -85,7 +87,8 @@ function myFunction() {
                 document.getElementById("myBtn3").disabled = false;
             }
             else {
-                window.location.href = "../quizStuff/thanks.html";
+                atTheEnd();
+                //window.location.href = "../quizStuff/thanks.html";
             }
             break;
         case 231:
@@ -106,7 +109,8 @@ function myFunction() {
                 document.getElementById("myBtn1").disabled = false;
             }
             else {
-                window.location.href = "../quizStuff/thanks.html";
+                atTheEnd();
+                //window.location.href = "../quizStuff/thanks.html";
             }
             break;
         case 312:
@@ -127,7 +131,8 @@ function myFunction() {
                 document.getElementById("myBtn2").disabled = false;
             }
             else {
-                window.location.href = "../quizStuff/thanks.html";
+                atTheEnd();
+                //window.location.href = "../quizStuff/thanks.html";
             }
             break;
         case 321:
@@ -148,7 +153,8 @@ function myFunction() {
                 document.getElementById("myBtn1").disabled = false;
             }
             else {
-                window.location.href = "../quizStuff/thanks.html";
+                atTheEnd();
+                //window.location.href = "../quizStuff/thanks.html";
             }
             break;
             userVisit++;
@@ -157,10 +163,14 @@ function myFunction() {
         default:
             text = "Looking forward to the Weekend";
         }
-    document.getElementById("demo").innerHTML = text;
+    //document.getElementById("demo").innerHTML = text;
 
     console.log(questionsOrder);
 
     console.log(userVisit);
 
+}
+
+function atTheEnd() {
+    window.location.href = "thanks.html";
 }
