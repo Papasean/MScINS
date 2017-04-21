@@ -31,7 +31,7 @@
 
     //Chooses a random question
     var questions = questionbank[Math.floor(Math.random() * questionbank.length)];
-    console.log(questions)
+    console.log(questions);
 
     var selections = []; //Array containing user choices
     var quiz = $('#quiz'); //Quiz div object
