@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/sean.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/js.cookie.js"></script>
@@ -21,31 +19,22 @@
 
 </head>
     <body>
-
-    <div id="myModal1" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal 1 content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"></button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-                    <p>What is the IP Address of the host with the most errors?</p>
-                </div>
-                <div class="modal-footer">
-                    <p>Press "Start" when you are ready to begin</p>
-                    <button type="button" onclick="start();" class="btn btn-success" data-dismiss="modal"> Start </button>
-                </div>
+    <div>
+            <div>
+                <h4 id="div-title">Oi Oi</h4>
             </div>
-
-        </div>
+            <div><p id="div-body">Hello PigMonkey</p>
+            </div>
+            <div>
+                <p>Press "Start" when you are ready to begin</p>
+                <button type="button" onclick="start();" class="btn btn-success"> Start </button>
+            </div>
     </div>
 
         <script>
             createSession();
-            enableButtons();
+            //enableButtons();
+            modalContent();
         </script>
 
 </body>
