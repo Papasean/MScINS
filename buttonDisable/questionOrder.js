@@ -1,12 +1,12 @@
 /**
  * Created by Sean on 20/04/2017.
  */
-
+// Check the value of userVisit
 var userVisit = sessionStorage.getItem('userVisit') || 0;
 
-
+//check the value of questOrder
 var questionsOrder = JSON.parse(sessionStorage.getItem('questOrder')) || 0;
-console.log(questionsOrder);
+//console.log(questionsOrder);
 if (questionsOrder == 0)
 {
     var questionOrderArray = [123, 132, 213, 231, 312, 321];
@@ -27,29 +27,11 @@ console.log(typeof questionsOrder);
 console.log(questionsOrder);
 
 
-
-//console.log(typeof questionsOrder);
-//console.log(questionsOrder);
-
-//if (typeof questionsOrder === 'undefined' || questionsOrder === null) {
-  //  var questionOrderArray = [123, 132, 213, 231, 312, 321];
-    //var questionsOrder = questionOrderArray[Math.floor(Math.random() * questionOrderArray.length)];
-
-
-
 function myFunction() {
-    //console.log(pigMonkey);
-    //console.log(typeof pigMonkey);
-
-    //Chooses a random question
-    //var orderQuestions  = questionOrderArray[Math.floor(Math.random() * questionOrderArray.length)];
-    //sessionStorage.setItem('questOrder', orderQuestions);
-    //var questionsOrder;
     //var questionsOrder = 312;
     console.log(questionsOrder);
     sessionStorage.setItem('questOrder', questionsOrder);
     console.log(userVisit);
-    //console.log(orderQuestions)
     var text;
 
     switch(questionsOrder) {
@@ -192,4 +174,3 @@ function myFunction() {
     console.log(userVisit);
 
 }
-sessionStorage.setItem('questOrder', questionsOrder);
