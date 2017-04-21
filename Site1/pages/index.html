@@ -70,8 +70,7 @@
     <!-- Stopwatch.js-->
     <script src="../../js/stopwatch.js"></script>
 
-    <!-- multiTaskButton.js -->
-    <script src="../../js/multiTaskButton.js"></script>
+
 
     <!-- Posting to Firebase and Navigating pages -->
     <script src="../../js/firebase.js"></script>
@@ -121,7 +120,7 @@
 
             <div class="modal-footer">
                 <p>Press "Submit" to complete this task</p>
-                <button type="button" onclick="multiTask(); send2Firebase() ;"class="btn btn-success" data-dismiss="modal">Submit</button>
+                <button type="button" onclick="multiTask(); send2Firebase();" class="btn btn-success" data-dismiss="modal">Submit</button>
             </div>
         </div>
     </div>
@@ -460,19 +459,14 @@
 <!-- Randomising Questions Handler-->
 <script type='text/javascript' src='../../quizStuff/jsquiz.js'></script>
 
-    <!-- Load Modal on Startup -->
-    <script type="text/javascript">
-    $(window).load(function(){
-    $('#myModal1').modal('show');
-    });
-    </script>
+<!-- multiTaskButton.js -->
+<script src="../../js/multiTaskButton.js"></script>
 
-    <script>
-        //questionCreator()
-        //modalContent()
-    </script>
-
-
+<!-- Load Modal on Startup -->
+<script type="text/javascript"> $(window).load(function(){
+                                    $('#myModal1').modal('show');
+                                    });
+                                        </script>
 </body>
 
 </html>
