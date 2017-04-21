@@ -77,10 +77,10 @@
     <script src="../../js/firebase.js"></script>
 
     <!-- Randomising Questions Handler-->
-    <script type='text/javascript' src='../../js/sean_quiz.js'></script>
+    <script type='text/javascript' src='../../quizStuff/jsquiz.js'></script>
 
-    <!-- Modal Pages Config -->
-    <script src="../../js/modalSetup.js"></script>
+    <!-- Modal Pages Config
+    <script src="../../js/modalSetup.js"></script> -->
 
 </head>
 <body id="test1" onload="show();">
@@ -105,39 +105,28 @@
     </div>
 </div>
 
+<!-- Modal Two -->
 <div id="myModal2" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal 2 content-->
         <div class="modal-content">
-            <div class="modal-header">
+            <div id="container1" class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Task One</h4>
+                <h4 id="div-title2" class="modal-title">Task One</h4>
             </div>
-            <div id='quiz2' class="modal-body">
-                <p>What is the IP Address of the host with the most errors?</p>
-                <div class="radio">
-                    <label><input type="radio" value="1" name="optradio">192.168.0.1</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" value="2" name="optradio">192.168.0.10</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" value="3" name="optradio">172.16.0.15</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" value="4" name="optradio">172.16.0.29</label>
-                </div>
 
+            <div id='div-body2' class="modal-body">
             </div>
+
             <div class="modal-footer">
                 <p>Press "Submit" to complete this task</p>
-                <button type="button" onclick="multiTask(); send2Firebase() ;"class="btn btn-danger" data-dismiss="modal">Submit</button>
-
+                <button type="button" onclick="multiTask(); send2Firebase() ;"class="btn btn-success" data-dismiss="modal">Submit</button>
             </div>
         </div>
     </div>
 </div>
+
 
 <div id="wrapper">
         <div class="container">
@@ -465,7 +454,11 @@
     </div>
     <!-- /#wrapper -->
 
+<!-- Modal.js -->
+<script src="../bower_components/bootstrap/js/modal.js"></script>
 
+<!-- Randomising Questions Handler-->
+<script type='text/javascript' src='../../quizStuff/jsquiz.js'></script>
 
     <!-- Load Modal on Startup -->
     <script type="text/javascript">
@@ -475,7 +468,8 @@
     </script>
 
     <script>
-        modalContent()
+        //questionCreator()
+        //modalContent()
     </script>
 
 

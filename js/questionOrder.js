@@ -4,6 +4,9 @@
 // Check the value of userVisit
 var userVisit = sessionStorage.getItem('userVisit') || 0;
 
+// Check the value of questVisit
+//var questVisit = sessionStorage.getItem('questVisit') || 0;
+
 //check the value of questOrder
 var questionsOrder = JSON.parse(sessionStorage.getItem('questOrder')) || 0;
 //console.log(questionsOrder);
@@ -22,6 +25,7 @@ function enableButtons() {
     console.log(questionsOrder);
     sessionStorage.setItem('questOrder', questionsOrder);
     console.log(userVisit);
+ //   console.log(questVisit);
     var text;
 
     switch(questionsOrder) {
