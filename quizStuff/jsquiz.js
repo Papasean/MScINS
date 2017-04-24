@@ -41,17 +41,16 @@ var questionbank = [{
 
     //Chooses a random question
     var questions = questionbank[Math.floor(Math.random() * questionbank.length)];
-    console.log(questions);
-    console.log(questions.correctAnswer);
-    console.log(questions.question);
+    //console.log(questions);
+    //console.log(questions.correctAnswer);
+    //console.log(questions.question);
 
 // Check the value of userVisit
 
 var userVisit = JSON.parse(sessionStorage.getItem('userVisit')) || 0;
 
-//var questiontime = 0;
-console.log(userVisit);
-console.log(typeof userVisit);
+//console.log(userVisit);
+//console.log(typeof userVisit);
 
 var radioList = $('<ul>');
 var item;
@@ -102,7 +101,7 @@ function createQuestionElement() {
 
             var radioButtons = createRadios();
             qElement.append(radioButtons);
-            console.log(qElement.get(0).innerHTML);
+            //console.log(qElement.get(0).innerHTML);
             return qElement.get(0).innerHTML;
         }
 

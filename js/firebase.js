@@ -5,6 +5,7 @@ function send2Firebase()
         var userId = JSON.parse(Cookies.get('UserID'));
         var radioValue = document.querySelector('input[name="answer"]:checked').value;
         var finTime = document.getElementById("time").innerHTML;
+        var correctAnswer = questions.correctAnswer;
 
         // Initialize Firebase
         var config = {
@@ -21,7 +22,8 @@ function send2Firebase()
         var results = database.ref('results/netmon3');
         var data = {
             Username: userId,
-            Answer: radioValue,
+            Answer_User: radioValue,
+            Answer_Correct: correctAnswer,
             Time: finTime
         };
 
