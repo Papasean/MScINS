@@ -1,7 +1,7 @@
 /*** Created by Sean on 17/04/2017.**/
 function send2Firebase()
     {
-
+        //set variables for updating database
         var userId = JSON.parse(Cookies.get('UserID'));
         var radioValue = document.querySelector('input[name="answer"]:checked').value;
         var finTime = document.getElementById("time").innerHTML;
@@ -19,11 +19,12 @@ function send2Firebase()
         firebase.initializeApp(config);
 
         var database = firebase.database();
-        var results = database.ref('results/netmon3');
+        var results = database.ref(document.title);
         var data = {
             Username: userId,
             Answer_User: radioValue,
             Answer_Correct: correctAnswer,
+           // Test_Number: testScenario,
             Time: finTime
         };
 
