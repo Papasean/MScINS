@@ -10,6 +10,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- My css file for overriding Bootstraps CSS file -->
+    <link href="../../css/sean.css" rel="stylesheet">
+
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
@@ -77,42 +80,41 @@
         stroke-width: 1.5px;
     }
 </style>
-<body id="test3" onload="show();">
-<!-- Modal One -->
+<body id="override" onload="show();">
 <div id="myModal1" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal 1 content-->
         <div class="modal-content">
-            <div id="container1" class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"></button>
+            <div class="modal-header">
                 <h4 id="div-title" class="modal-title">Task One</h4>
             </div>
-            <div id="quiz" class="modal-body">
-                <p id="div-body">What is the IP Address of the host with the most errors?</p>
+
+            <div id="div-body" class="modal-body">This is where the question goes!
             </div>
+
             <div class="modal-footer">
                 <p>Press "Start" when you are ready to begin</p>
                 <button type="button" onclick="start();" class="btn btn-success" data-dismiss="modal"> Start </button>
             </div>
         </div>
-
     </div>
 </div>
+
 <!-- Modal Two -->
 <div id="myModal2" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal 2 content-->
         <div class="modal-content">
+
             <div  class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 id="div-title2" class="modal-title">Task One</h4>
             </div>
 
-            <div id='div-body2' class="modal-body">
+            <div id='div-body2' class="modal-body">This is where the question goes!
             </div>
-            <div id='div-question'>
+
+            <div id='div-question' class="radio"> This is where the multiple choice questions go!
             </div>
 
             <div class="modal-footer">
@@ -121,7 +123,7 @@
             </div>
         </div>
     </div>
-</div>
+</div></div>
 
 <div id="wrapper">
     <div class="container">

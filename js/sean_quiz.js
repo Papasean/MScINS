@@ -51,18 +51,18 @@ var userVisit = JSON.parse(sessionStorage.getItem('userVisit')) || 0;
 
 //console.log(userVisit);
 //console.log(typeof userVisit);
-
+/**
 var radioList = $('<ul>');
 var item;
 var input = '';
-for (var i = 0; i < questions.choices.length; i++) {
+ for (var i = 0; i < questions.choices.length; i++) {
     item = $('<li>');
     input = '<input type="radio" class="radio" name="answer" value=' + i + ' />';
     input += questions.choices[i];
     item.append(input);
     radioList.append(item);
 }
-
+*/
 
     if (userVisit === 1) {
         document.getElementById("div-title").innerHTML = "Question One";

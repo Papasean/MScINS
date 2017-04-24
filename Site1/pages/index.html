@@ -15,6 +15,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- My css file for overriding Bootstraps CSS file -->
+    <link href="../../css/sean.css" rel="stylesheet">
+
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
@@ -70,45 +73,28 @@
     <!-- Stopwatch.js-->
     <script src="../../js/stopwatch.js"></script>
 
-
-
     <!-- Posting to Firebase and Navigating pages -->
     <script src="../../js/firebaseSetup.js"></script>
 
-    <!-- Randomising Questions Handler-->
-    <script type='text/javascript' src='../../js/sean_quiz.js'></script>
-
-    <!-- Modal Pages Config
-    <script src="../../js/modalSetup.js"></script> -->
-
-
-    <style type="text/css">
-        .radio-group {
-            float: left;
-            margin-right: 15px;
-        }
-    </style>
 
 </head>
-<body id="test1" onload="show();">
+<body id="override" onload="show();">
 <div id="myModal1" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal 1 content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"></button>
                 <h4 id="div-title" class="modal-title">Task One</h4>
             </div>
-            <div class="modal-body">
-                <p id="div-body">What is the IP Address of the host with the most errors?</p>
+
+            <div id="div-body" class="modal-body">This is where the question goes!
             </div>
+
             <div class="modal-footer">
                 <p>Press "Start" when you are ready to begin</p>
                 <button type="button" onclick="start();" class="btn btn-success" data-dismiss="modal"> Start </button>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -118,14 +104,15 @@
 
         <!-- Modal 2 content-->
         <div class="modal-content">
+
             <div  class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 id="div-title2" class="modal-title">Task One</h4>
             </div>
 
-            <div id='div-body2' class="modal-body">
+            <div id='div-body2' class="modal-body">This is where the question goes!
             </div>
-            <div id='div-question'>
+
+            <div id='div-question' class="radio"> This is where the multiple choice questions go!
             </div>
 
             <div class="modal-footer">
@@ -467,16 +454,17 @@
 <script src="../bower_components/bootstrap/js/modal.js"></script>
 
 <!-- Randomising Questions Handler-->
-<script type='text/javascript' src='../../quizStuff/jsquiz.js'></script>
+<script type='text/javascript' src='../../js/sean_quiz.js'></script>
 
 <!-- multiTaskButton.js -->
 <script src="../../js/multiTaskButton.js"></script>
 
 <!-- Load Modal on Startup -->
-<script type="text/javascript"> $(window).load(function(){
-                                    $('#myModal1').modal('show');
-                                    });
-                                        </script>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#myModal1').modal('show');
+        });
+</script>
 </body>
 
 </html>

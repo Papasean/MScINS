@@ -2,3 +2,9 @@
 .group1{
     visibility: hidden;
 }
+
+#override ul {
+    list-style-type: none;
+    line-height: 160%;
+    font-weight: bold;
+}
