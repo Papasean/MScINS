@@ -3,7 +3,7 @@ function send2Firebase()
     {
 
         var userId = JSON.parse(Cookies.get('UserID'));
-        var radioValue = document.querySelector('input[name="optradio"]:checked').value;
+        var radioValue = document.querySelector('input[name="answer"]:checked').value;
         var finTime = document.getElementById("time").innerHTML;
 
         // Initialize Firebase

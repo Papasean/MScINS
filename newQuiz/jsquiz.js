@@ -96,11 +96,11 @@
             id: 'question'
         });
 
-        var header = $('<h2>Question ' + (index + 1) + ':</h2>');
-        qElement.append(header);
+       // var header = $('<h2>Question:</h2>');
+        //qElement.append(header);
 
-        var question = $('<p>').append(questions.question);
-        qElement.append(question);
+       // var question = $('<p>').append(questions.question);
+        //qElement.append(question);
 
         var radioButtons = createRadios();
         qElement.append(radioButtons);
@@ -109,7 +109,7 @@
     }
 
     // Creates a list of the answer choices as radio inputs
-    function createRadios(index) {
+    function createRadios() {
         var radioList = $('<ul>');
         var item;
         var input = '';

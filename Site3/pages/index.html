@@ -105,21 +105,21 @@
 
         <!-- Modal 2 content-->
         <div class="modal-content">
-            <div class="modal-header">
+            <div  class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 id="div-title2" class="modal-title">Task One</h4>
             </div>
 
             <div id='div-body2' class="modal-body">
             </div>
+            <div id='div-question'>
+            </div>
 
+            <div class="modal-footer">
+                <p>Press "Submit" to complete this task</p>
+                <button type="button" onclick="multiTask(); send2Firebase();" class="btn btn-success" data-dismiss="modal">Submit</button>
+            </div>
         </div>
-
-        <div class="modal-footer">
-            <p>Press "Submit" to complete this task</p>
-            <button type="button" onclick="multiTask(); send2Firebase();" class="btn btn-danger" data-dismiss="modal">Submit</button>
-        </div>
-
     </div>
 </div>
 
