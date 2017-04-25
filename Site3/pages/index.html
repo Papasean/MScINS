@@ -10,6 +10,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- My css file for overriding Bootstraps CSS file -->
+    <link href="../../css/sean.css" rel="stylesheet">
+
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
@@ -45,6 +48,9 @@
     <!-- multiTaskButton.js -->
     <script src="../../js/multiTaskButton.js"></script>
 
+    <!-- Posting to Firebase and Navigating pages -->
+    <script src="../../js/firebaseSetup.js"></script>
+
 
 <style type="text/css">
     circle.node {
@@ -74,73 +80,50 @@
         stroke-width: 1.5px;
     }
 </style>
-<body id="test3" onload="show();">
-<!-- Modal One -->
+<body id="override" onload="show();">
 <div id="myModal1" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal 1 content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"></button>
-                <h4 class="modal-title">Task One</h4>
+                <h4 id="div-title" class="modal-title">Task One</h4>
             </div>
-            <div  class="modal-body">
-                <p>What is the IP Address of the host with the most errors?</p>
-                <!-- <div class="checkbox">
-                    <label><input type="checkbox" value="1">192.168.0.1</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="2">192.168.0.10</label>
-                </div>
-                <div class="checkbox disabled">
-                    <label><input type="checkbox" value="3" >172.16.0.15</label>
-                </div>
-                <div class="checkbox disabled">
-                    <label><input type="checkbox" value="4" >172.16.0.29</label>
-                </div> -->
+
+            <div id="div-body" class="modal-body">This is where the question goes!
             </div>
+
             <div class="modal-footer">
                 <p>Press "Start" when you are ready to begin</p>
                 <button type="button" onclick="start();" class="btn btn-success" data-dismiss="modal"> Start </button>
-                <!--<button type="button" onclick="multiTask();"class="btn btn-danger" data-dismiss="modal">Click to Submit</button>-->
             </div>
         </div>
-
     </div>
 </div>
+
 <!-- Modal Two -->
 <div id="myModal2" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal 2 content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Task One</h4>
+
+            <div  class="modal-header">
+                <h4 id="div-title2" class="modal-title">Task One</h4>
             </div>
-            <div  class="modal-body">
-                <p>What is the IP Address of the host with the most errors?</p>
-                <div class="radio">
-                    <label><input type="radio" value="1" name="optradio">192.168.0.1</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" value="2" name="optradio">192.168.0.10</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" value="3" name="optradio">172.16.0.15</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" value="4" name="optradio">172.16.0.29</label>
-                </div>
+
+            <div id='div-body2' class="modal-body">This is where the question goes!
             </div>
+
+            <div id='div-question' class="radio"> This is where the multiple choice questions go!
+            </div>
+
             <div class="modal-footer">
                 <p>Press "Submit" to complete this task</p>
-                <button type="button" onclick="multiTask(); btntest_onclick()"class="btn btn-danger" data-dismiss="modal">Submit</button>
+                <button type="button" onclick="multiTask(); send2Firebase();" class="btn btn-success" data-dismiss="modal">Submit</button>
             </div>
         </div>
     </div>
-</div>
+</div></div>
 
 <div id="wrapper">
     <div class="container">
@@ -221,8 +204,12 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
     <!-- Modal.js -->
     <script src="../bower_components/bootstrap/js/modal.js"></script>
+
+    <!-- Randomising Questions Handler-->
+    <script type='text/javascript' src='../../js/sean_quiz.js'></script>
 
     <!-- Load Modal on Startup -->
     <script type="text/javascript">
@@ -231,46 +218,7 @@
         });
     </script>
 
-    <!-- Store Data and Back to Main Page -->
-    <script type="text/javascript">
-        function btntest_onclick()
-        {
 
-            var userId = JSON.parse(Cookies.get('UserID'));
-            var radioValue = document.querySelector('input[name="optradio"]:checked').value;
-            var finTime = document.getElementById("time").innerHTML;
-
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyAu-8hww6VXWXNXSDKxZxYLBP4NEpjOJ30",
-                authDomain: "mscins-9ab2e.firebaseapp.com",
-                databaseURL: "https://mscins-9ab2e.firebaseio.com",
-                projectId: "mscins-9ab2e",
-                storageBucket: "mscins-9ab2e.appspot.com",
-                messagingSenderId: "354357573870"
-            };
-            firebase.initializeApp(config);
-
-            var database = firebase.database();
-            var results = database.ref('results/netmon3');
-            var data = {
-                Username: userId,
-                Answer: radioValue,
-                Time: finTime
-            };
-
-            results.push(data, finished);
-            function finished(error) {
-                if (error) {
-                    console.log('ooops');
-                } else {
-                    console.log('data saved!');
-                    window.location.href = "../../index.html";
-                }
-            }
-
-        }
-    </script>
 </div>
 </body>
 </html>
