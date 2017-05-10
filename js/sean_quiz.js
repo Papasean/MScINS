@@ -112,7 +112,7 @@ function createRadios() {
             var input = '';
             for (var i = 0; i < questions.choices.length; i++) {
                 item = $('<li>');
-                input = '<input type="radio" class="radio" name="answer" value=' + i + ' />';
+                input = '<input type="radio" class="radio" name="answer" value=' + i + ' required/>';
                 input += questions.choices[i];
                 item.append(input);
                 radioList.append(item);

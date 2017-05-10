@@ -117,7 +117,7 @@
 
             <div class="modal-footer">
                 <p>Press "Submit" to complete this task</p>
-                <button type="button" onclick="multiTask(); send2Firebase();" class="btn btn-success" data-dismiss="modal">Submit</button>
+                <button id="endButton" type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
             </div>
         </div>
     </div>
@@ -464,6 +464,30 @@
     $(window).load(function(){
         $('#myModal1').modal('show');
         });
+</script>
+
+<!-- End Button Actions -->
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#endButton').click(
+        function(){
+
+        var radioName = "answer"; // use this if there's a relationship between the element
+        // triggering this check and the radio buttons
+        if ($('input[name='+ radioName +']:checked').length) {
+        // at least one of the radio buttons was checked
+        //return true;  allow whatever action would normally happen to continue
+            send2Firebase();
+        }
+        else {
+            alert('Please make a selection!');
+            // no radio button was checked
+        return false; // stop whatever action would normally happen
+        }
+        }
+        );
+        }
+    );
 </script>
 </body>
 
