@@ -48,7 +48,7 @@ var	clsStopwatch = function() {
     };
 };
 
-var x = new clsStopwatch();
+var xt = new clsStopwatch();
 var $time;
 var clocktimer;
 
@@ -78,21 +78,21 @@ function show() {
 }
 
 function update() {
-    $time.innerHTML = formatTime(x.time());
+    $time.innerHTML = formatTime(xt.time());
 }
 
 function start() {
     clocktimer = setInterval("update()", 1);
-    x.start();
+    xt.start();
 }
 
 function stop() {
-    x.stop();
+    xt.stop();
     clearInterval(clocktimer);
 }
 
 function reset() {
     stop();
-    x.reset();
+    xt.reset();
     update();
 }
