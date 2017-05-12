@@ -50,7 +50,7 @@ else if (questBank === 2){
 }
 else {
     var questionbank = [{
-        question: "7. How many times is the icmp.js called in the errorlog?",
+        question: "7. How many times is the icmp.js listed in the errorlog?",
         choices: [" 33", " 80", " 47", " 53"],
         correctAnswer: 4,
         dataset: "ssjson7.json"
