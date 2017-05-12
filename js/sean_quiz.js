@@ -1,42 +1,47 @@
-/**
- * Created by Sean on 20/04/2017.
- */
-
-/** Developed from http://codepen.io/gcarino/pen/LDgtn */
+/*** Created by Sean on 20/04/2017
+ Developed from http://codepen.io/gcarino/pen/LDgtn ...*/
 
     //Sets up the question bank
 var questionbank = [{
-        question: "1. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 1
+        question: "1. What is the ip address of the most visited site",
+        choices: [" 239.255.255.250", " 192.168.0.254", " 81.139.57.100", " 162.254.196.41"],
+        correctAnswer: 3,
+        dataset: "ssjson1.json"
     }, {
-        question: "2. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 2
+        question: "2. Which IP Address class has the least number of visited hosts",
+        choices: [" Class A", " Class B", " Class C", " Class D"],
+        correctAnswer: 4,
+        dataset: "ssjson2.json"
     }, {
-        question: "3. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 3
+        question: "3. What is the total number of site visits",
+        choices: [" 948,328", " 3,392,766", " 1,488,847,", " 192.168.1.13"],
+        correctAnswer: 2,
+        dataset: "ssjson3.json"
     }, {
         question: "4. What is the ip address of the host with the most errors",
         choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 4
+        correctAnswer: 4,
+        dataset: "ssjson4.json"
     }, {
         question: "5. What is the ip address of the host with the most errors",
         choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 1
+        correctAnswer: 1,
+        dataset: "ssjson5.json"
     }, {
         question: "6. What is the ip address of the host with the most errors",
         choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 2
+        correctAnswer: 2,
+        dataset: "ssjson6.json"
     }, {
         question: "7. What is the ip address of the host with the most errors",
         choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 3
+        correctAnswer: 3,
+        dataset: "ssjson7.json"
     }, {
         question: "8. What is the ip address of the host with the most errors",
         choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 4
+        correctAnswer: 4,
+        dataset: "ssjson8.json"
     }];
 
     //Chooses a random question
