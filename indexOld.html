@@ -34,13 +34,23 @@
             </div>
             <div id="moduleWrap" class="row">
                 <div class="col-sm-4">
+                    <!--<h3>Exercise 1</h3>
+                    <div class="group1">
+                        <div id="1">
+                        <p>The following exercise will use a "typical" industry dashboard layout for displaying enterprise data.</p>
+                        <p>When you are ready enter the site using the button below and follow the onscreen instructions</p>
+                        <form>
+                            <input type="button" onclick="window.location.href='Site1/index.html'" id="myBtn1" value="Enter" class="btn btn-lg btn-success" disabled>
+                        </form>
+                        </div>
+                    </div> -->
                     <h3>Exercise 1</h3>
                     <div>
                         <div>
                             <p>The following exercise will use a "typical" industry dashboard layout for displaying enterprise data.</p>
                             <p>When you are ready enter the site using the button below and follow the onscreen instructions.</p>
                             <form>
-                                <input type="button" onclick="window.location.href='Site1/index.html'" id="1" value="Enter" class="btn btn-lg btn-success" disabled>
+                                <input type="button" onclick="window.location.href='Site1/index.html'" id="myBtn1" value="Enter" class="btn btn-lg btn-success" disabled>
                             </form>
                         </div>
                     </div>
@@ -52,7 +62,7 @@
                         <p>The following exercise will use a "sunburst" visualisation technique for displaying enterprise data.</p>
                         <p>When you are ready enter the site using the button below and follow the onscreen instructions.</p>
                             <form>
-                                <input type="button" onclick="window.location.href='Site2/index.html'" id="2" value="Enter" class="btn btn-lg btn-success" disabled>
+                                <input type="button" onclick="window.location.href='Site2/index.html'" id="myBtn2" value="Enter" class="btn btn-lg btn-success" disabled>
                             </form>
                         </div>
                     </div>
@@ -64,16 +74,49 @@
                         <p>The following exercise will use a "node and spoke" visualisation technique for displaying enterprise data.</p>
                         <p>When you are ready enter the site using the button below and follow the onscreen instructions.</p>
                             <form>
-                                <input type="button" onclick="window.location.href='Site3/index.html'" id="3" value="Enter" class="btn btn-lg btn-success" disabled>
+                                <input type="button" onclick="window.location.href='Site3/index.html'" id="myBtn3" value="Enter" class="btn btn-lg btn-success" disabled>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <script>
+        <script>
             createSession();
             enableButtons();
         </script>
+        <!-- End Button Actions -->
+        <script type="text/javascript">
+            var btn_click = function()
+            //{
+              //  alert("Button clicked, id "+this.id+", text"+this.innerHTML);
+            //}
+            document.getElementById('myBtn1').onclick = btn_click;
+            document.getElementById('myBtn2').onclick = btn_click;
+            document.getElementById('myBtn3').onclick = btn_click;
+        </script>
+        <!-- <script type="text/javascript">
+            $(document).ready(function(){
+                    $('#endButton').click(
+                        function(){
+
+                            var radioName = "answer"; // use this if there's a relationship between the element
+                            // triggering this check and the radio buttons
+                            if ($('input[name='+ radioName +']:checked').length) {
+                                // at least one of the radio buttons was checked
+                                //return true;  allow whatever action would normally happen to continue
+                                send2Firebase();
+                            }
+                            else {
+                                alert('Please make a selection!');
+                                // no radio button was checked
+                                return false; // stop whatever action would normally happen
+                            }
+                        }
+                    );
+                }
+            );
+        </script> -->
+
 </body>
 </html>

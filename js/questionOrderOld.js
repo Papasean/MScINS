@@ -5,7 +5,7 @@
 var userVisit = sessionStorage.getItem('userVisit') || 0;
 
 // Check the value of questVisit
-var questBank = sessionStorage.getItem('questBank') || 0;
+//var questVisit = sessionStorage.getItem('questVisit') || 0;
 
 //check the value of questOrder
 var questionsOrder = JSON.parse(sessionStorage.getItem('questOrder')) || 0;
@@ -25,7 +25,7 @@ function enableButtons() {
     console.log(questionsOrder);
     sessionStorage.setItem('questOrder', questionsOrder);
     console.log(userVisit);
-    console.log(questBank);
+ //   console.log(questVisit);
     var text;
 
     switch(questionsOrder) {
@@ -34,23 +34,17 @@ function enableButtons() {
                 text = "Good morning 123";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 1;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("1").disabled = false;
+                document.getElementById("myBtn1").disabled = false;
             } else if (userVisit < 2) {
                 text = "Good day 123";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 2;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("2").disabled = false;
+                document.getElementById("myBtn2").disabled = false;
             } else if (userVisit < 3) {
                 text = "Good night 123";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 3;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("3").disabled = false;
+                document.getElementById("myBtn3").disabled = false;
             }
             else {
                 atTheEnd();
@@ -62,23 +56,17 @@ function enableButtons() {
                 text = "Good morning 132";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 1;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("1").disabled = false;
+                document.getElementById("myBtn1").disabled = false;
             } else if (userVisit < 2) {
                 text = "Good day 132";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 3;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("3").disabled = false;
+                document.getElementById("myBtn3").disabled = false;
             } else if (userVisit < 3) {
                 text = "Good night 132";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 2;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("2").disabled = false;
+                document.getElementById("myBtn2").disabled = false;
             }
             else {
                 atTheEnd();
@@ -90,23 +78,17 @@ function enableButtons() {
                 text = "Good morning 213";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 2;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("2").disabled = false;
+                document.getElementById("myBtn2").disabled = false;
             } else if (userVisit < 2) {
                 text = "Good day 213";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 1;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("1").disabled = false;
+                document.getElementById("myBtn1").disabled = false;
             } else if (userVisit < 3) {
                 text = "Good night 213";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 3;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("3").disabled = false;
+                document.getElementById("myBtn3").disabled = false;
             }
             else {
                 atTheEnd();
@@ -118,23 +100,17 @@ function enableButtons() {
                 text = "Good morning 231";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 2;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("2").disabled = false;
+                document.getElementById("myBtn2").disabled = false;
             } else if (userVisit < 2) {
                 text = "Good day 231";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 3;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("3").disabled = false;
+                document.getElementById("myBtn3").disabled = false;
             } else if (userVisit < 3) {
                 text = "Good night 231";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 1;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("1").disabled = false;
+                document.getElementById("myBtn1").disabled = false;
             }
             else {
                 atTheEnd();
@@ -146,23 +122,17 @@ function enableButtons() {
                 text = "Good morning 312";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 3;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("3").disabled = false;
+                document.getElementById("myBtn3").disabled = false;
             } else if (userVisit < 2) {
                 text = "Good day 312";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 1;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("1").disabled = false;
+                document.getElementById("myBtn1").disabled = false;
             } else if (userVisit < 3) {
                 text = "Good night 312";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 2;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("2").disabled = false;
+                document.getElementById("myBtn2").disabled = false;
             }
             else {
                 atTheEnd();
@@ -174,23 +144,17 @@ function enableButtons() {
                 text = "Good morning 321";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 3;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("3").disabled = false;
+                document.getElementById("myBtn3").disabled = false;
             } else if (userVisit < 2) {
                 text = "Good day 321";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 2;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("2").disabled = false;
+                document.getElementById("myBtn2").disabled = false;
             } else if (userVisit < 3) {
                 text = "Good night 321";
                 userVisit++;
                 sessionStorage.setItem('userVisit', userVisit);
-                questBank = 1;
-                sessionStorage.setItem('questBank', questBank);
-                document.getElementById("1").disabled = false;
+                document.getElementById("myBtn1").disabled = false;
             }
             else {
                 atTheEnd();
@@ -200,7 +164,6 @@ function enableButtons() {
             userVisit++;
             return userVisit;
             console.log(userVisit);
-
         default:
             text = "Looking forward to the Weekend";
         }
@@ -209,8 +172,6 @@ function enableButtons() {
     console.log(questionsOrder);
 
     console.log(userVisit);
-
-    console.log(questBank);
 
 }
 
