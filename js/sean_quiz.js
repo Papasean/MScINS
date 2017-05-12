@@ -42,7 +42,7 @@ else if (questBank === 2){
         dataset: "ssjson5.json"
     }, {
         question: "6. What is the total number of site visits",
-        choices: [" 948,328", " 3,392,766", " 1,488,847", " 192.168.1.13"],
+        choices: [" 948,328", " 3,392,766", " 1,488,847", " 4,372,605"],
         correctAnswer: 2,
         dataset: "ssjson6.json"
     }
