@@ -12,18 +12,18 @@ console.log(questBank);
 if (questBank === 1) {
 
     var questionbank = [{
-        question: "1. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 4,
+        question: "1. Which Quarter of 2011 has the lowest sales for Ipads?",
+        choices: [" Quarter 1", " Quarter 2", " Quarter 3", " Quarter 4"],
+        correctAnswer: 1,
         dataset: "ssjson1.json"
     }, {
-        question: "2. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
+        question: "2. Which Quarter of 2011 has the lowest sales for Ipads?",
+        choices: [" Quarter 1", " Quarter 2", " Quarter 3", " Quarter 4"],
         correctAnswer: 1,
         dataset: "ssjson2.json"
     }, {
-        question: "3. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
+        question: "3. Which Quarter of 2011 has the lowest sales for Ipads?",
+        choices: [" Quarter 1", " Quarter 2", " Quarter 3", " Quarter 4"],
         correctAnswer: 2,
         dataset: "ssjson3.json"
     }
@@ -50,19 +50,19 @@ else if (questBank === 2){
 }
 else {
     var questionbank = [{
-        question: "7. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 3,
+        question: "7. How many times is the icmp.js called in the errorlog?",
+        choices: [" 33", " 80", " 47", " 53"],
+        correctAnswer: 4,
         dataset: "ssjson7.json"
     }, {
-        question: "8. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 4,
+        question: "8. Which is the most called javascript library",
+        choices: [" checkState.js", " dateNavigation.js", " dateInterval.js", " bootstrap-button.js"],
+        correctAnswer: 2,
         dataset: "ssjson8.json"
     }, {
-        question: "9. What is the ip address of the host with the most errors",
-        choices: [" 192.168.1.10", " 192.168.1.11", " 192.168.1.12", " 192.168.1.13"],
-        correctAnswer: 4,
+        question: "9. What is the value of the root node?",
+        choices: [" 3564", " 2462", " 8778", " 1139"],
+        correctAnswer: 3,
         dataset: "ssjson9.json"
     }
     ]
